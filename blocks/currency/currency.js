@@ -175,17 +175,15 @@ export default function decorate(block) {
     let toCur = '';
     [...block.children].forEach((row, r) => {
         if (r == 0) {
-            fromCur = [...row.children][0].textContent.toUpperCase()
-            toCur = [...row.children][1].textContent.toUpperCase()
-            row.replaceWith()
+            fromCur = [...row.children][0].textContent.toUpperCase();
+            toCur = [...row.children][1].textContent.toUpperCase();
+            row.replaceWith();
         } else {
-            console.log(fromCur)
-            console.log(toCur)
-            console.log(fx.convert(1000, {from: fromCur, to: toCur}))
             let curOutput = document.createElement('p');
             curOutput.classList.add('currency-output');
-            curOutput.textContent = fx.convert(1000, {from: fromCur, to: toCur})
-            row.replaceWith(curOutput)
+            let inputVal = Number([...row.children][0].textContent);
+            curOutput.textContent = fx.convert(inputVal, {from: fromCur, to: toCur});
+            row.replaceWith(curOutput);
         }
     });
 }
