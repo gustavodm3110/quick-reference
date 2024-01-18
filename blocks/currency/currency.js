@@ -177,7 +177,7 @@ export default function decorate(block) {
         if (r == 0 || [...row.children].length == 2 ) {
             fromCur = [...row.children][0].textContent.toUpperCase();
             toCur = [...row.children][1].textContent.toUpperCase();
-            row.replaceWith();
+            row.remove();
         } else {
             let curOutput = document.createElement('p');
             curOutput.classList.add('currency-output');
