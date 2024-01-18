@@ -181,7 +181,7 @@ export default function decorate(block) {
         } else {
             let curOutput = document.createElement('p');
             curOutput.classList.add('currency-output');
-            let inputVal = Number([...row.children][0].textContent);
+            let inputVal = [...row.children][0].textContent;
             curOutput.textContent = fx.convert(inputVal, {from: fromCur, to: toCur});
             row.replaceWith(curOutput);
         }
