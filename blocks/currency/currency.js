@@ -174,7 +174,7 @@ export default function decorate(block) {
     let fromCur = '';
     let toCur = '';
     [...block.children].forEach((row, r) => {
-        if (r == 0) {
+        if (r == 0 || [...row.children].length == 2 ) {
             fromCur = [...row.children][0].textContent.toUpperCase();
             toCur = [...row.children][1].textContent.toUpperCase();
             row.replaceWith();
@@ -182,7 +182,8 @@ export default function decorate(block) {
             let curOutput = document.createElement('p');
             curOutput.classList.add('currency-output');
             let inputVal = [...row.children][0].textContent;
-            curOutput.textContent = fx.convert(inputVal, {from: fromCur, to: toCur});
+            curOutput.textContent = `${inputVal}${fromCur} = \
+                ${fx.convert(inputVal, {from: fromCur, to: toCur})}${toCur}`;
             row.replaceWith(curOutput);
         }
     });
